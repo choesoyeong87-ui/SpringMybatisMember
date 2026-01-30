@@ -51,15 +51,15 @@
 	<!-- 데이터베이스에서 기본키를 인수로 전달한 자바빈의 프로퍼티를 통해 취득한다. -->
 	<!-- <insert id="create" useGeneratedKeys="true" keyProperty="userNo"> -->
 	<insert id="create" parameterType="Member">
-		<selectKey keyProperty="userNo" resultType="int" order="BEFORE">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
 			select mybatisMember_seq.NEXTVAL FROM DUAL
 		</selectKey>
 		INSERT INTO mybatisMember (no, id, pw, name)
-		VALUES(#{userNo},#{id},#{pw},#{name})
+		VALUES(#{no},#{id},#{pw},#{name})
 	</insert>
 
 	<insert id="createAuth">
-		INSERT INTO mybatisMember_auth(no,auth)
-		VALUES(#{userNo},#{auth})
+		INSERT INTO mybatisMemberauth(no,auth)
+		VALUES(#{no},#{auth})
 	</insert>
 </mapper>
