@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,40 +32,63 @@
 
 <div class="form-card">
     <div class="form-header">
-        <h3 class="m-0">${board.writer} 님의 게시판 수정</h3>
+        <h3 class="m-0">${member.name} 님의 수정화면</h3>
         <p class="small opacity-75 mt-2">당신의 생각을 자유롭게 적어주세요.</p>
     </div>
     
     <div class="form-body">
-        <form action="/board/update" method="post">
+    
+        <form:form modelAttribute="member" action="/member/update" method="post">
             
             <div class="form-floating mb-3">
-                <input type="text" name="title" class="form-control shadow-none" id="title" placeholder="Title" value="${board.title}" required>
-                <label for="title">제목</label>
+                <input type="text" name="no" class="form-control shadow-none" id="no" placeholder="no" value="${member.no}" required>
+                <label for="no">회원번호</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" name="no" class="form-control shadow-none" id="no" value="${board.no}" readonly>
-                <label for="no">작성자 번호</label>
+                <input type="text" name="id" class="form-control shadow-none" id="id" value="${member.id}" readonly>
+                <label for="id">회원아이디</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" name="writer" class="form-control shadow-none" id="writer" placeholder="Writer" value="${board.writer}" required>
-                <label for="writer">작성자</label>
+                <input type="text" name="name" class="form-control shadow-none" id="name" placeholder="name" value="${member.name}" required>
+                <label for="name">이름</label>
             </div>
-
-            <div class="form-floating mb-4">
-                <textarea name="content" class="form-control shadow-none" id="content"  style="height: 200px">
-                ${board.content}</textarea>
-                <label for="content">내용을 입력하세요...</label>
+            
+            <div class="form-floating mb-3">
+                <input type="password" name="pw" class="form-control shadow-none" id="pw" placeholder="pw" value="${member.pw}" required>
+                <label for="pw">비밀번호</label>
             </div>
+<div class="btn-area">
+                       
+                <form:select path="authList[0].auth">
+                    <form:option value="" label="=== 선택해 주세요 ===" />
+                    <form:option value="ROLE_USER" label="사용자" />
+                    <form:option value="ROLE_MEMBER" label="회원" />
+                    <form:option value="ROLE_ADMIN" label="관리자" />
+                </form:select>
+                <form:select path="authList[1].auth">
+                    <form:option value="" label="=== 선택해 주세요 ===" />
+                    <form:option value="ROLE_USER" label="사용자" />
+                    <form:option value="ROLE_MEMBER" label="회원" />
+                    <form:option value="ROLE_ADMIN" label="관리자" />
+                </form:select>
+                <form:select path="authList[2].auth">
+                    <form:option value="" label="=== 선택해 주세요 ===" />
+                    <form:option value="ROLE_USER" label="사용자" />
+                    <form:option value="ROLE_MEMBER" label="회원" />
+                    <form:option value="ROLE_ADMIN" label="관리자" />
+                </form:select>
+           
+        </div>
+            
 
             <div class="d-flex gap-2">
-                <a href="/board/boardList" class="btn btn-light w-25" style="width: 40% !important; white-space: normal;"> 게시판<br>리스트 </a>
+                <a href="/member/memberList" class="btn btn-light w-25" style="width: 40% !important; white-space: normal;"><br>리스트 </a>
                 <button type="submit" class="btn btn-submit">수정전송</button>
                 <button type="reset" class="btn btn-submit">수정취소</button>
             </div>
             
-        </form>
+        </form:form>
     </div>
 </div>
 

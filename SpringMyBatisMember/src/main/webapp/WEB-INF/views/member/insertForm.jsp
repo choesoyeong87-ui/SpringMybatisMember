@@ -51,11 +51,7 @@
                 <input type="text" name="name" class="form-control shadow-none" id="name" placeholder="이름을 입력해주세요" required>
                 <label for="name">이름</label>
             </div>
-            <div class="form-floating mb-3">
-                <input type="number" name="coin" class="form-control shadow-none" id="coin" placeholder="숫자만 입력해주세요">
-                <label for="coin">등록할코인</label>
-            </div>
-
+            
             
 
             <div class="d-flex gap-2">
