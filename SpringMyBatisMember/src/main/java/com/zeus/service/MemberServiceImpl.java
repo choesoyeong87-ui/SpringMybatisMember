@@ -64,8 +64,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	@Transactional
 	public int delete(Member member) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int count = mapper.delete(member);
+		if (count > 0) {
+			mapper.deleteAuth(member);
+		}
+		return count;
 	}
 
+	@Override
+    public List<Member> search(Member member) throws Exception {
+        return mapper.search(member);
+    }
 }
